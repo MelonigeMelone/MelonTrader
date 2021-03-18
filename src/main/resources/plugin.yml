@@ -1,0 +1,11 @@
+name: MelonTrader
+author: MelonigeMelone
+main: de.melonigemelone.trader.MelonTrader
+version: ${project.version}
+description: MelonTrader
+api-version: 1.16
+
+depend: [MelonAPI]
+
+commands:
+  melonTrader:
