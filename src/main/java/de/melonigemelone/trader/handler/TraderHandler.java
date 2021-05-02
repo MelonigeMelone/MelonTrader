@@ -8,10 +8,12 @@ import java.util.*;
 
 public class TraderHandler {
 
+    private TraderConfigHandler traderConfigHandler;
     private List<Trader> traders = new ArrayList<>();
     private HashMap<UUID, Trader> traderSessions = new HashMap<>();
 
     public TraderHandler(TraderConfigHandler traderConfigHandler) {
+        this.traderConfigHandler = traderConfigHandler;
         traders = traderConfigHandler.loadTraders();
     }
 
@@ -35,5 +37,9 @@ public class TraderHandler {
             }
         }
         return null;
+    }
+
+    public void reloadTradersFromConfig() {
+        traders = traderConfigHandler.loadTraders();
     }
 }

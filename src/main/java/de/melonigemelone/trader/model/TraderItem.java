@@ -61,10 +61,17 @@ public class TraderItem {
     }
 
     public ItemStack getItemStack() {
+        if(traderItemType.equals(TraderItemType.EXECUTE_COMMAND)) {
+            return new ItemBuilder(material, 1)
+                    .setName(displayName)
+                    .addLore("§8§l» §7Kaufen: §e" + buyPrice + "€")
+                    .build();
+        }
+
         return new ItemBuilder(material, 1)
                 .setName(displayName)
                 .addLore("§8§l» §7Kaufen: §e" + buyPrice + "€")
-                .addLore("§8§l» §Verkaufen: §e" + sellPrice + "€")
+                .addLore("§8§l» §7Verkaufen: §e" + sellPrice + "€")
                 .addLore("§7Um das Item zu verkaufen klicke auf")
                 .addLore("§7das §eItem §7in deinem §eInventar")
                 .build();

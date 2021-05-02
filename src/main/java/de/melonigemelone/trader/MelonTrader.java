@@ -1,6 +1,7 @@
 package de.melonigemelone.trader;
 
 import de.melonigemelone.trader.commands.TraderOpenCommand;
+import de.melonigemelone.trader.commands.TraderReloadCommand;
 import de.melonigemelone.trader.handler.TraderConfigHandler;
 import de.melonigemelone.trader.handler.TraderHandler;
 import de.melonigemelone.trader.listener.TraderListener;
@@ -21,6 +22,7 @@ public class MelonTrader extends JavaPlugin {
         traderHandler = new TraderHandler(traderConfigHandler);
 
         getCommand("melonTrader").setExecutor(new TraderOpenCommand());
+        getCommand("reloadMelonTrader").setExecutor(new TraderReloadCommand());
         getServer().getPluginManager().registerEvents(new TraderListener(), this);
     }
 

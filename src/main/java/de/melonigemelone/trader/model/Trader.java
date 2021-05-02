@@ -70,7 +70,7 @@ public class Trader {
 
         ItemStack itemStack = event.getCurrentItem();
 
-        if(!traderMaterials.containsKey(itemStack.getType())) {
+        if(!traderMaterials.containsKey(itemStack.getType()) && !itemStack.getType().equals(Material.BARRIER)) {
             return;
         }
 
@@ -78,7 +78,7 @@ public class Trader {
             traderMaterials.get(itemStack.getType()).sellItem(player, itemStack, event.getSlot());
         } else {
             if(itemStack.getType().equals(Material.BARRIER)) {
-                sellAll();
+                sellAll(player);
                 return;
             }
             if (event.getClick() == ClickType.SHIFT_LEFT) {
@@ -89,8 +89,16 @@ public class Trader {
         }
     }
 
-    public void sellAll() {
+    public void sellAll(Player player) {
+        for(int i = 0; i<player.getInventory().getContents().length; i++) {
+            ItemStack itemStack = player.getInventory().getContents()[i];
+            if(itemStack != null) {
+                if (traderMaterials.containsKey(itemStack.getType())) {
+                    traderMaterials.get(itemStack.getType()).sellItem(player, itemStack, i);
+                }
+            }
 
+        }
     }
 
 
